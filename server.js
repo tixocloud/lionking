@@ -12,7 +12,7 @@ bt.get("/", bt.staticHandler("index.html"));
 // Game operator
 // - a game operator is a superset of the game viewer
 bt.get("/operator", function( req, res ) {
-    var gameId = "";
+    //var gameId = "";
 });
 
 // Game viewer
