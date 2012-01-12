@@ -71,6 +71,28 @@ bt.listen = function( port, host) {
 
     io.sockets.on('connection', function(socket) {
         socket.emit('connected', {msg: 'Connection Established'});
+
+        socket.on('mouseDown', function(data) {
+            console.log(data);
+            socket.broadcast.emit('mouseDown', data);
+        });
+
+        socket.on('mouseMoveServer', function(data) {
+            console.log(data)
+            socket.broadcast.emit('mouseMoveClient', data);
+        });
+
+        socket.on('mouseUp', function(data) {
+            socket.broadcast.emit('mouseUp', data);
+        });
+
+        socket.on('mouseLeave', function(data) {
+            socket.broadcast.emit('mouseLeave', data);
+        });
+
+        socket.on('undo', function(data) {
+            socket.broadcast.emit('undo', data);
+        });
     });
 
     sys.puts("Server listening at http://" + (host || "127.0.0.1")

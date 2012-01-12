@@ -1,0 +1,18 @@
+#container { position: relative; }
+#upperLeft, #middleLeft { 
+    border-right: 5px solid #000000;
+    border-bottom: 5px solid #000000;
+}
+#upperMiddle, #middleMiddle {
+    border-bottom: 5px solid #000000;
+}
+#upperRight, #middleRight { 
+    border-left: 5px solid #000000;
+    border-bottom: 5px solid #000000;
+}
+#bottomLeft {
+    border-right: 5px solid #000000;
+}
+#bottomRight {
+    border-left: 5px solid #000000;
+}
