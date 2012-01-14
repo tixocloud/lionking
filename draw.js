@@ -96,10 +96,21 @@
         }
     }
 
+    function getTeamColour() {
+        if (currentTeam === 1) {
+            return '#7fbf4d';
+        } else {
+            return '#3d5691';
+        }
+    }
+
     function mouseMove(context, x, y) {
           // The event handler works like a drawing pencil which tracks the mouse 
           // movements. We start drawing a path made up of lines.
           if (beginDrawing) {
+            context.fillStyle = getTeamColour();
+            context.strokeStyle = getTeamColour();
+            context.lineWidth = 8;
             context.lineTo(x, y);
             context.stroke();
           }
@@ -134,8 +145,14 @@
 
     function mouseLeave() { doneDrawing(); }
 
+    var currentTeam = 1;
+
+    function activateTeam(team) {
+        currentTeam = team;
+    }
+
     var socket = io.connect('http://tereno-mbpro.local:8001');
-    socket.on('mouseMoveServer', function(data) {
+    socket.on('mouseMove', function(data) {
         mouseMove(document.getElementById(data['id']).getContext('2d'), data['x'], data['y']); 
     });
 
@@ -157,6 +174,7 @@
 
     $('.canvas').each(function() {
         var context = this.getContext('2d');
+        context.lineWidth = 8;
         
         $(this).mousemove(function(ev) {
             var position = getPosition(ev);
@@ -189,5 +207,15 @@
     $('#undoButton').click(function() {
         undo();
         socket.emit('undo');
+    });
+
+    $('#team1').click(function() {
+        activateTeam(1);
+        socket.emit('activateTeam1');
+    });
+
+    $('#team2').click(function() {
+        activateTeam(2);
+        socket.emit('activateTeam2');
     });
 })();

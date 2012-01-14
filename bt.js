@@ -73,13 +73,11 @@ bt.listen = function( port, host) {
         socket.emit('connected', {msg: 'Connection Established'});
 
         socket.on('mouseDown', function(data) {
-            console.log(data);
             socket.broadcast.emit('mouseDown', data);
         });
 
-        socket.on('mouseMoveServer', function(data) {
-            console.log(data)
-            socket.broadcast.emit('mouseMoveClient', data);
+        socket.on('mouseMove', function(data) {
+            socket.broadcast.emit('mouseMove', data);
         });
 
         socket.on('mouseUp', function(data) {
