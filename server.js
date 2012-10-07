@@ -1,4 +1,4 @@
-HOST = 'tereno-mbpro.local'; // localhost
+HOST = 'localhost'; // localhost
 PORT = 8001;
 
 var bt = require("./bt"),
